@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Weight Predictor</title>
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --secondary: #74ebd5;
+            --bg: #f4f7f9;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--secondary) 0%, #acb6e5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .grid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Span full width for specific fields */
+        .full-width { grid-column: span 2; }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        input {
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
+        }
+
+        button {
+            grid-column: span 2;
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+
+        .unit {
+            font-size: 0.7rem;
+            color: #999;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Baby Weight Predictor</h1>
+        
+        <form action="/predict" method="POST" class="grid-form">
+            
+            <div class="form-group full-width">
+                <label>Gestation <span class="unit">(Days - e.g., 290)</span></label>
+                <input type="number" name="gestation" step="0.1" placeholder="280" required>
+            </div>
+
+            <div class="form-group">
+                <label>Parity <span class="unit">(0 or 1)</span></label>
+                <input type="number" name="parity" placeholder="0" required>
+            </div>
+
+            <div class="form-group">
+                <label>Maternal Age</label>
+                <input type="number" name="age" step="0.1" placeholder="31" required>
+            </div>
+
+            <div class="form-group">
+                <label>Height <span class="unit">(Inches)</span></label>
+                <input type="number" name="height" step="0.1" placeholder="64" required>
+            </div>
+
+            <div class="form-group">
+                <label>Weight <span class="unit">(Pounds)</span></label>
+                <input type="number" name="weight" step="0.1" placeholder="127" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Smoking Status <span class="unit">(0: No, 1: Yes)</span></label>
+                <input type="number" name="smoke" step="0.1" placeholder="0" required>
+            </div>
+
+            <button type="submit">Calculate Prediction</button>
+        </form>
+        <h3>Predicted Birth Weight : {{prediction}}</h3>
+    </div>
+
+</body>
+</html>
