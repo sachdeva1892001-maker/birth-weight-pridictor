@@ -30,7 +30,7 @@ def get_prediction():
     baby_data_cleaned = get_cleaned_data(baby_data_form)
 
     bby_df = pd.DataFrame(baby_data_cleaned)
-    with open("myvenv\model\model.pkl", "rb") as obj:
+    with open("/model.pkl", "rb") as obj:
         model = pickle.load(obj)
     prediction = model.predict(bby_df)
     prediction = round(float(prediction[0]) , 2)
